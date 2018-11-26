@@ -39,10 +39,6 @@ class Login extends React.Component {
 			<div className="bm-padding ">
 				<div className="bm-center-content row">
 					<form id="form-login" className="col">
-						<br />
-						<h2 className="text-center" style={{ fontWeight: '700' }}>
-							Please sign in
-						</h2>
 						<FormControl fullWidth className="row">
 							<InputLabel>Email</InputLabel>
 							<Input
@@ -69,9 +65,9 @@ class Login extends React.Component {
 								<RenderCheckBox />
 							</Grid>
 
-							<Grid item xs={6} style={{ textAlign: 'right' }}>
+							<Grid item xs={6} style={{ textAlign: 'right', color: 'white' }}>
 								<a id="reset-password" href="/">
-									<b>Forgotten password?</b>
+									<span>Forgotten password?</span>
 								</a>
 							</Grid>
 						</div>

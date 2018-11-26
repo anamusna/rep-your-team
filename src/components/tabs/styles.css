@@ -8,13 +8,15 @@ form button {
     text-align: left;
     margin: 0;
     font-size: 0.9375rem;
+    color: white !important;
     font-weight: 400;
-    background-color: pink;
+    background-color: red !important;
   }
   label {
     margin-bottom: 0.5rem;
     display: inline-block;
   }
+  
   button,
   input {
     overflow: visible;
@@ -196,7 +198,7 @@ form button {
     margin-bottom: 0;
   }
   #form-login #reset-password {
-    color: red;
+    color: white;
     font-size: 15px;
     margin-right: 23px;
   }

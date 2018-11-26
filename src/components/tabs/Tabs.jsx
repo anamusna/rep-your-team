@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 //import { Button } from 'reactstrap';
-
+import { Logo } from './helpers';
 import Login from './Login';
 import Signup from './Signup';
 
@@ -23,23 +23,40 @@ class Tabs extends React.Component {
 			<div>
 				<div id="control ">
 					{view === 0 ? (
-						<div id="tabs">
-							<Button id="tab" href="#" className="active">
-								Login
-							</Button>
-							<Button id="tab" href="#" onClick={() => this.changeView(1)}>
-								Register
-							</Button>
+						<div id="tabs" className="center">
+							<div>
+								<Logo />
+							</div>
+
+							<h2 className="text-center" style={{ fontWeight: '700' }}>
+								Please sign in
+							</h2>
+							<div>
+								<Button id="tab" href="#" className="active">
+									Login
+								</Button>
+								<Button id="tab" href="#" onClick={() => this.changeView(1)}>
+									Register
+								</Button>
+							</div>
 						</div>
 					) : (
 						view === 1 && (
 							<div id="tabs">
-								<Button id="tab" href="#" onClick={() => this.changeView(0)}>
-									Login
-								</Button>
-								<Button id="tab" href="#" className="active">
-									Register
-								</Button>
+								<div>
+									<Logo />
+								</div>
+								<h2 className="text-center" style={{ fontWeight: '700' }}>
+									Signup to start
+								</h2>
+								<div>
+									<Button id="tab" href="#" onClick={() => this.changeView(0)}>
+										Login
+									</Button>
+									<Button id="tab" href="#" className="active">
+										Register
+									</Button>
+								</div>
 							</div>
 						)
 					)}

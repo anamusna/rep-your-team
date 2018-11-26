@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-import Router from './components/tabs/Router';
-import Nav from './components/layout/Nav';
+import Homepage from './components/tabs/Homepage';
 
 class App extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<Nav />
-				<br />
-				<br />
-				<Router />
+				<Homepage />
 			</React.Fragment>
 		);
 	}

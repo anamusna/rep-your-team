@@ -4,17 +4,49 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import avataaars from '../img/avataaars.png';
+import sportsFans from '../img/sportsFans.jpg';
 
 export const Logo = () => (
 	<div
+		className="container-fluid"
 		style={{
-			display        : 'flex',
+			display        : 'grid',
 			justifyContent : 'center',
 			verticalAlign  : 'middle',
-			paddingTop     : '72px',
-			paddingBottom  : '38px'
+			alignContent   : 'center'
 		}}>
-		<img src="./tabs/images/avataaars.png" alt="logo" />
+		<img
+			src={avataaars}
+			alt="logo"
+			style={{
+				width        : '100px',
+				height       : '100px',
+				marginTop    : '30px',
+				marginBottom : '40px'
+			}}
+		/>
+	</div>
+);
+export const Logo2 = () => (
+	<div
+		className="container-fluid"
+		style={{
+			display  : 'grid',
+			position : 'absolute',
+			left     : '0px',
+			top      : '20px'
+		}}>
+		<img
+			src={sportsFans}
+			alt="logo"
+			style={{
+				width        : '100px',
+				height       : '100px',
+				marginTop    : '30px',
+				marginBottom : '40px'
+			}}
+		/>
 	</div>
 );
 

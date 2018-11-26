@@ -23,7 +23,7 @@ class Signup extends React.Component {
 	submit = (e) => {
 		e.preventDefault();
 		const user = {
-			data : this.state
+			data : this.state.validateField
 		};
 	};
 
@@ -31,6 +31,8 @@ class Signup extends React.Component {
 		this.setState({
 			[e.target.id]: e.target.value
 		});
+
+		this.validateField(e.target.name, e.target.value);
 	};
 
 	componentWillMount() {
@@ -45,6 +47,8 @@ class Signup extends React.Component {
 	}
 
 	validateField(fieldName, value) {
+		console.log(fieldName, value);
+
 		let fieldValidationErrors = this.state.formErrors;
 		let emailValid = this.state.emailValid;
 		let passwordValid = this.state.passwordValid;
@@ -54,12 +58,12 @@ class Signup extends React.Component {
 			case 'email':
 				emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
 				fieldValidationErrors.email = emailValid ? '' : ' is invalid!';
-				console.log(this.state.email, emailValid);
+				console.log(value, this.state.email, emailValid);
 				break;
 			case 'password':
 				passwordValid = value.length > 6;
 				fieldValidationErrors.password = passwordValid ? '' : ' is too short!';
-				console.log(value, this.state.password, repeat_passwordValid);
+				console.log(value, this.state.password, passwordValid);
 				break;
 			case 'repeat_password':
 				repeat_passwordValid = value === this.state.password;
@@ -69,14 +73,11 @@ class Signup extends React.Component {
 			default:
 				break;
 		}
-		this.setState(
-			{
-				formErrors    : fieldValidationErrors,
-				emailValid    : emailValid,
-				passwordValid : passwordValid
-			},
-			this.validateForm
-		);
+		this.setState({
+			formErrors    : fieldValidationErrors,
+			emailValid    : emailValid,
+			passwordValid : passwordValid
+		});
 	}
 
 	errorClass(error) {
@@ -87,10 +88,6 @@ class Signup extends React.Component {
 			<div className="bm-padding">
 				<div className="bm-center-content row">
 					<form id="form-login" className="col" onSubmit={this.submit}>
-						<br />
-						<h2 className="text-center" style={{ fontWeight: '700' }}>
-							Signup to start
-						</h2>
 						<FormControl
 							fullWidth
 							className={`form-group row ${this.errorClass(this.state.formErrors.email)}`}>
