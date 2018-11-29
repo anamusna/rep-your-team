@@ -19,13 +19,16 @@ class Signup extends React.Component {
 			formValid     : false
 		};
 	}
-
-	submit = (e) => {
-		e.preventDefault();
-		const user = {
-			data : this.state.validateField
-		};
-	};
+	
+    handleSubmit = (evt) => {
+    if (!this.validateField()) {
+      evt.preventDefault();
+      return;
+     }
+     const { email, password } = this.state;
+     alert(`Signed up with email: ${email} password: ${password}`);
+    }
+  
 
 	handleUserInput = (e) => {
 		this.setState({
@@ -87,7 +90,7 @@ class Signup extends React.Component {
 		return (
 			<div className="bm-padding">
 				<div className="bm-center-content row">
-					<form id="form-login" className="col" onSubmit={this.submit}>
+					<form id="form-login" className="col" onSubmit={this.handleSubmit}>
 						<FormControl
 							fullWidth
 							className={`form-group row ${this.errorClass(this.state.formErrors.email)}`}>
