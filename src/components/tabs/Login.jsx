@@ -13,11 +13,21 @@ class Login extends React.Component {
 		super();
 
 		this.state = {
-			email    : '',
-			password : ''
+			email: '',
+			password: ''
 		};
 	}
+	handleSubmit = (evt) => {
+		if (this.componentWillMount()) {
+			evt.preventDefault();
+			return;
+		} else {
+			const { email, password } = this.state;
+			alert(`Signed in with email: ${email} password: ${password}`);
+		}
 
+
+	}
 	handleChange = (e) => {
 		this.setState({
 			[e.target.id]: e.target.value
@@ -25,12 +35,12 @@ class Login extends React.Component {
 	};
 	componentWillMount() {
 		this.Ref = base.syncState('loginEmail', {
-			context : this,
-			state   : 'email'
+			context: this,
+			state: 'email'
 		});
 		this.Ref = base.syncState('loginPassword', {
-			context : this,
-			state   : 'password'
+			context: this,
+			state: 'password'
 		});
 	}
 
@@ -73,7 +83,7 @@ class Login extends React.Component {
 						</div>
 						<div className="row">
 							<Grid item xs={12}>
-								<button variant="extendedFab" className="btn-info">
+								<button type="submit" variant="extendedFab" className="btn-info" onClick={this.handleSubmit}>
 									Login
 								</button>
 							</Grid>

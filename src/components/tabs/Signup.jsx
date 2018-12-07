@@ -11,24 +11,27 @@ class Signup extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			email         : '',
-			password      : '',
-			formErrors    : { email: '', password: '', repeat_password: '' },
-			emailValid    : false,
-			passwordValid : false,
-			formValid     : false
+			email: '',
+			password: '',
+			formErrors: { email: '', password: '', repeat_password: '' },
+			emailValid: false,
+			passwordValid: false,
+
 		};
 	}
-	
-    handleSubmit = (evt) => {
-    if (!this.validateField()) {
-      evt.preventDefault();
-      return;
-     }
-     const { email, password } = this.state;
-     alert(`Signed up with email: ${email} password: ${password}`);
-    }
-  
+
+	handleSubmit = (evt) => {
+		if (this.validateField()) {
+			evt.preventDefault();
+			return;
+		} else {
+			const { email, password } = this.state;
+			alert(`Signed up with email: ${email} password: ${password}`);
+		}
+
+
+	}
+
 
 	handleUserInput = (e) => {
 		this.setState({
@@ -36,21 +39,22 @@ class Signup extends React.Component {
 		});
 
 		this.validateField(e.target.name, e.target.value);
+
 	};
 
 	componentWillMount() {
 		this.Ref = base.syncState('signupEmail', {
-			context : this,
-			state   : 'email'
+			context: this,
+			state: 'email'
 		});
 		this.Ref = base.syncState('signupPassword', {
-			context : this,
-			state   : 'password'
+			context: this,
+			state: 'password'
 		});
 	}
 
 	validateField(fieldName, value) {
-		console.log(fieldName, value);
+		//console.log(fieldName, value);
 
 		let fieldValidationErrors = this.state.formErrors;
 		let emailValid = this.state.emailValid;
@@ -61,25 +65,25 @@ class Signup extends React.Component {
 			case 'email':
 				emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
 				fieldValidationErrors.email = emailValid ? '' : ' is invalid!';
-				console.log(value, this.state.email, emailValid);
+				//	console.log(value, this.state.email, emailValid);
 				break;
 			case 'password':
 				passwordValid = value.length > 6;
 				fieldValidationErrors.password = passwordValid ? '' : ' is too short!';
-				console.log(value, this.state.password, passwordValid);
+				//	console.log(value, this.state.password, passwordValid);
 				break;
 			case 'repeat_password':
 				repeat_passwordValid = value === this.state.password;
 				fieldValidationErrors.repeat_password = repeat_passwordValid ? '' : ' dont match';
-				console.log(value, this.state.repeat_password, repeat_passwordValid);
+				//	console.log(value, this.state.repeat_password, repeat_passwordValid);
 				break;
 			default:
 				break;
 		}
 		this.setState({
-			formErrors    : fieldValidationErrors,
-			emailValid    : emailValid,
-			passwordValid : passwordValid
+			formErrors: fieldValidationErrors,
+			emailValid: emailValid,
+			passwordValid: passwordValid
 		});
 	}
 
@@ -90,12 +94,14 @@ class Signup extends React.Component {
 		return (
 			<div className="bm-padding">
 				<div className="bm-center-content row">
-					<form id="form-login" className="col" onSubmit={this.handleSubmit}>
+					<form id="form-login" className="col" >
+						<p></p>
 						<FormControl
 							fullWidth
+							style={{ color: "red" }}
 							className={`form-group row ${this.errorClass(this.state.formErrors.email)}`}>
 							<InputLabel>Email</InputLabel>
-							{console.log(this.state.email)}
+
 							<Input
 								id="email"
 								type="email"
@@ -134,7 +140,7 @@ class Signup extends React.Component {
 
 						<div className="row">
 							<Grid item xs={12}>
-								<button variant="extendedFab" className="btn-success" disabled={!this.state.formValid}>
+								<button type="submit" variant="extendedFab" className="btn-success" onClick={this.handleSubmit} onSubmit={this.state.validateField}>
 									Register
 								</button>
 							</Grid>
