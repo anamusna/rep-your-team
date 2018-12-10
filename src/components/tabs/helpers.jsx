@@ -11,19 +11,19 @@ export const Logo = () => (
 	<div
 		className="container-fluid"
 		style={{
-			display        : 'grid',
-			justifyContent : 'center',
-			verticalAlign  : 'middle',
-			alignContent   : 'center'
+			display: 'grid',
+			justifyContent: 'center',
+			verticalAlign: 'middle',
+			alignContent: 'center'
 		}}>
 		<img
 			src={avataaars}
 			alt="logo"
 			style={{
-				width        : '100px',
-				height       : '100px',
-				marginTop    : '30px',
-				marginBottom : '40px'
+				width: '100px',
+				height: '100px',
+				marginTop: '30px',
+				marginBottom: '40px'
 			}}
 		/>
 	</div>
@@ -32,19 +32,19 @@ export const Logo2 = () => (
 	<div
 		className="container-fluid"
 		style={{
-			display  : 'grid',
-			position : 'absolute',
-			left     : '0px',
-			top      : '20px'
+			display: 'grid',
+			position: 'absolute',
+			left: '0px',
+			top: '20px'
 		}}>
 		<img
 			src={sportsFans}
 			alt="logo"
 			style={{
-				width        : '100px',
-				height       : '100px',
-				marginTop    : '30px',
-				marginBottom : '40px'
+				width: '100px',
+				height: '100px',
+				marginTop: '30px',
+				marginBottom: '40px'
 			}}
 		/>
 	</div>
@@ -52,7 +52,7 @@ export const Logo2 = () => (
 
 class CheckBox extends Component {
 	state = {
-		rememberMe : false
+		rememberMe: false
 	};
 
 	handleChange = (rememberMe) => (event) => {
@@ -68,7 +68,7 @@ function CheckBoxControl({ children, ...props }) {
 	return <FormControlLabel control={<Checkbox {...props} render={children} />} label="Remember me" />;
 }
 
-export const RenderCheckBox = epitath(function*() {
+export const RenderCheckBox = epitath(function* () {
 	let { handleChange } = yield <CheckBox />;
 
 	return (

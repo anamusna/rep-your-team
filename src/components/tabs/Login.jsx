@@ -2,6 +2,7 @@ import './styles.css';
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
+import { FacebookLoginButton, GoogleLoginButton } from "react-social-login-buttons";
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import base from './base';
@@ -69,7 +70,6 @@ class Login extends React.Component {
 								onChange={this.handleChange}
 							/>
 						</FormControl>
-
 						<div className="row ">
 							<Grid item xs={6}>
 								<RenderCheckBox />
@@ -80,14 +80,21 @@ class Login extends React.Component {
 									<span>Forgotten password?</span>
 								</a>
 							</Grid>
-						</div>
-						<div className="row">
+
 							<Grid item xs={12}>
 								<button type="submit" variant="extendedFab" className="btn-info" onClick={this.handleSubmit}>
 									Login
 								</button>
 							</Grid>
 						</div>
+						<br />
+						<hr />
+						<FacebookLoginButton iconSize="20px" size="40px" onClick={() => alert("Hello")}>
+							<span style={{ fontSize: 15 }}>Login with facebook</span>
+						</FacebookLoginButton>
+						<GoogleLoginButton iconSize="20px" size="40px" onClick={() => alert("Hello")}>
+							<span style={{ fontSize: 15 }}>Login with google</span>
+						</GoogleLoginButton>
 					</form>
 				</div>
 			</div>
