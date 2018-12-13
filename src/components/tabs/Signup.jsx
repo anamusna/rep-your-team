@@ -1,155 +1,75 @@
+import React, { Component } from "react";
+import UserDetails from "./UserDetails";
+import PersonalDetails from "./PersonalDetails";
+import Confirm from "./Confirm";
 import './styles.css';
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import { FormErrors } from './FormErrors';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
-import base from './base';
 
-class Signup extends React.Component {
+class SignUp extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			email: '',
-			password: '',
-			formErrors: { email: '', password: '', repeat_password: '' },
-			emailValid: false,
-			passwordValid: false,
 
+		this.state = {
+			step: 1,
 		};
 	}
 
-	handleSubmit = (evt) => {
-		if (this.validateField()) {
-			evt.preventDefault();
-			return;
-		} else {
-			const { email, password } = this.state;
-			alert(`Signed up with email: ${email} password: ${password}`);
-		}
-
-
-	}
-
-
-	handleUserInput = (e) => {
+	//Proceed to next step
+	nextStep = () => {
+		const { step } = this.state;
 		this.setState({
-			[e.target.id]: e.target.value
+			step: step + 1
 		});
-
-		this.validateField(e.target.name, e.target.value);
-
 	};
 
-	componentWillMount() {
-		this.Ref = base.syncState('signupEmail', {
-			context: this,
-			state: 'email'
-		});
-		this.Ref = base.syncState('signupPassword', {
-			context: this,
-			state: 'password'
-		});
-	}
-
-	validateField(fieldName, value) {
-		//console.log(fieldName, value);
-
-		let fieldValidationErrors = this.state.formErrors;
-		let emailValid = this.state.emailValid;
-		let passwordValid = this.state.passwordValid;
-		let repeat_passwordValid = this.state.repeat_passwordValid;
-
-		switch (fieldName) {
-			case 'email':
-				emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-				fieldValidationErrors.email = emailValid ? '' : ' is invalid!';
-				//	console.log(value, this.state.email, emailValid);
-				break;
-			case 'password':
-				passwordValid = value.length > 6;
-				fieldValidationErrors.password = passwordValid ? '' : ' is too short!';
-				//	console.log(value, this.state.password, passwordValid);
-				break;
-			case 'repeat_password':
-				repeat_passwordValid = value === this.state.password;
-				fieldValidationErrors.repeat_password = repeat_passwordValid ? '' : ' dont match';
-				//	console.log(value, this.state.repeat_password, repeat_passwordValid);
-				break;
-			default:
-				break;
-		}
+	prevStep = () => {
+		const { step } = this.state;
 		this.setState({
-			formErrors: fieldValidationErrors,
-			emailValid: emailValid,
-			passwordValid: passwordValid
+			step: step - 1
 		});
-	}
+	};
 
-	errorClass(error) {
-		return error.length === 0 ? '' : 'has-error';
-	}
+
+	handleChange = input => e => {
+		this.setState({
+			[input]: e.target.value
+		});
+	};
+
+
 	render() {
-		return (
-			<div className="bm-padding">
-				<div className="bm-center-content row">
-					<form id="form-login" className="col" >
-						<p></p>
-						<FormControl
-							fullWidth
-							style={{ color: "red" }}
-							className={`form-group row ${this.errorClass(this.state.formErrors.email)}`}>
-							<InputLabel>Email</InputLabel>
+		const { step } = this.state;
+		const { username, email, password, team, location } = this.state;
+		const values = { username, email, password, team, location };
 
-							<Input
-								id="email"
-								type="email"
-								name="email"
-								placeholder="email@example.com"
-								onChange={this.handleUserInput}
-								required
-							/>
-						</FormControl>
-						<FormControl
-							fullWidth
-							className={`form-group row ${this.errorClass(this.state.formErrors.password)}`}>
-							<InputLabel>Password</InputLabel>
-							<Input
-								id="password"
-								type="password"
-								name="password"
-								placeholder="enter password"
-								onChange={this.handleUserInput}
-								required
-							/>
-						</FormControl>
-						<FormControl
-							fullWidth
-							className={`form-group row ${this.errorClass(this.state.formErrors.password)}`}>
-							<InputLabel>Repeat Password</InputLabel>
-							<Input
-								type="password"
-								name="repeat_password"
-								placeholder="repeat password"
-								onChange={this.handleUserInput}
-								required
-							/>
-						</FormControl>
-						<FormErrors formErrors={this.state.formErrors} />
-
-						<div className="row">
-							<Grid item xs={12}>
-								<button type="submit" variant="extendedFab" className="btn-success" onClick={this.handleSubmit} onSubmit={this.state.validateField}>
-									Register
-								</button>
-							</Grid>
-						</div>
-					</form>
-				</div>
-			</div>
-		);
+		switch (step) {
+			case 1:
+				return (
+					<UserDetails
+						nextStep={this.nextStep}
+						handleChange={this.handleChange}
+						values={values}
+					/>
+				);
+			case 2:
+				return (
+					<PersonalDetails
+						nextStep={this.nextStep}
+						prevStep={this.prevStep}
+						handleChange={this.handleChange}
+						values={values}
+					/>
+				);
+			case 3:
+				return (
+					<Confirm
+						finalStep={this.props.finalStep}
+						prevStep={this.prevStep}
+						values={values}
+					/>
+				);
+			default:
+		}
 	}
 }
 
-export default Signup;
+export default SignUp;

@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 //import { Button } from 'reactstrap';
-import { Logo } from './helpers';
 import Login from './Login';
 import Signup from './Signup';
 
@@ -10,8 +9,8 @@ class Tabs extends React.Component {
 		super(props);
 
 		this.state = {
-			user : {},
-			view : 0
+			user: {},
+			view: 0
 		};
 	}
 
@@ -20,13 +19,10 @@ class Tabs extends React.Component {
 	render() {
 		const { view } = this.state;
 		return (
-			<div>
+			<div style={{ margin: "5% auto" }}>
 				<div id="control ">
 					{view === 0 ? (
 						<div id="tabs" className="center">
-							<div>
-								<Logo />
-							</div>
 
 							<h2 className="text-center" style={{ fontWeight: '700' }}>
 								Please sign in
@@ -41,26 +37,26 @@ class Tabs extends React.Component {
 							</div>
 						</div>
 					) : (
-						view === 1 && (
-							<div id="tabs">
-								<div>
-									<Logo />
-								</div>
-								<h2 className="text-center" style={{ fontWeight: '700' }}>
-									Signup to start
+							view === 1 && (
+								<div id="tabs">
+									<div>
+									</div>
+									<h2 className="text-center" style={{ fontWeight: '700' }}>
+										Signup to start
 								</h2>
-								<div>
-									<Button id="tab" href="#" onClick={() => this.changeView(0)}>
-										Login
+									<div>
+										<Button id="tab" href="#" onClick={() => this.changeView(0)}>
+											Login
 									</Button>
-									<Button id="tab" href="#" className="active">
-										Register
+										<Button id="tab" href="#" className="active">
+											Register
 									</Button>
+									</div>
 								</div>
-							</div>
-						)
-					)}
+							)
+						)}
 				</div>
+				<br />
 				<div id="content">{view === 1 ? <Signup /> : <Login />}</div>
 			</div>
 		);

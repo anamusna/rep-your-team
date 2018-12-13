@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Homepage from './components/tabs/Homepage';
+import Router from './components/tabs/Router';
 
 class App extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<Homepage />
+				<Router />
 			</React.Fragment>
 		);
 	}

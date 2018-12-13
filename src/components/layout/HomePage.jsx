@@ -1,11 +1,15 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
 
-const HomePage = (props) => (
-	<div>
-		<h1>Rep Your Team</h1>
-		<Link to="/Login">Login</Link>
-	</div>
-);
+class HomePage extends Component {
+	render() {
+		return (
+			<React.Fragment>
+				<div className="container center">
+					<h1>WELCOME</h1>
+				</div>
+			</React.Fragment>
+		);
+	}
+}
 
 export default HomePage;

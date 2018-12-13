@@ -9,6 +9,7 @@
     "epitath": "^1.0.0-beta.2",
     "firebase": "^5.5.9",
     "jquery": "^3.3.1",
+    "material-ui": "^0.20.2",
     "re-base": "^4.0.0",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
@@ -19,6 +20,7 @@
     "react-scripts": "2.1.1",
     "react-social-login-buttons": "^2.3.0",
     "reactstrap": "^6.5.0",
+    "styled-components": "^4.1.2",
     "validator": "^10.9.0"
   },
   "scripts": {

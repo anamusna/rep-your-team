@@ -1,10 +1,7 @@
 import './styles.css';
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import FormControl from '@material-ui/core/FormControl';
+import { Button, FormControl, Grid, InputLabel, Input } from '@material-ui/core';
 import { FacebookLoginButton, GoogleLoginButton } from "react-social-login-buttons";
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
 import base from './base';
 
 import { RenderCheckBox } from './helpers';
@@ -58,6 +55,7 @@ class Login extends React.Component {
 								id="email"
 								placeholder="email@example.com"
 								onChange={this.handleChange}
+								required
 							/>
 						</FormControl>
 						<FormControl fullWidth className="row">
@@ -68,6 +66,7 @@ class Login extends React.Component {
 								name="password"
 								placeholder="enter password"
 								onChange={this.handleChange}
+								required
 							/>
 						</FormControl>
 						<div className="row ">
@@ -82,9 +81,9 @@ class Login extends React.Component {
 							</Grid>
 
 							<Grid item xs={12}>
-								<button type="submit" variant="extendedFab" className="btn-info" onClick={this.handleSubmit}>
+								<Button type="submit" variant="extendedFab" className="btn-info" onClick={this.handleSubmit}>
 									Login
-								</button>
+								</Button>
 							</Grid>
 						</div>
 						<br />
