@@ -20,10 +20,11 @@ class UserDetails extends React.Component {
     }
 
     continue = (e) => {
-        if (this.validateField()) {
+        if (this.componentWillMount()) {
             e.preventDefault();
             return;
         } else {
+
             this.props.nextStep();
             //  alert(`Signed up with email: ${email} password: ${password}`);
         }
